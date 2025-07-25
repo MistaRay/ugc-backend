@@ -38,6 +38,20 @@ const authenticateToken = (req, res, next) => {
 
 // Routes
 
+// Root endpoint
+app.get('/', (req, res) => {
+  res.json({ 
+    status: 'OK', 
+    message: 'UGC Backend is running!',
+    endpoints: {
+      health: '/health',
+      wechatLogin: '/api/wechat/login',
+      wechatUpdateUser: '/api/wechat/update-userinfo',
+      profile: '/profile'
+    }
+  });
+});
+
 // Health check
 app.get('/health', (req, res) => {
   res.json({ status: 'OK', message: 'UGC Backend is running!' });
