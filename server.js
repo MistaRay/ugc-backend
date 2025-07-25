@@ -195,10 +195,15 @@ app.get('/profile', authenticateToken, async (req, res) => {
 });
 
 // Start server
-app.listen(PORT, () => {
-  console.log(`🚀 UGC Backend server running on port ${PORT}`);
-  console.log(`📱 Health check: http://localhost:${PORT}/health`);
-});
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => {
+    console.log(`🚀 UGC Backend server running on port ${PORT}`);
+    console.log(`📱 Health check: http://localhost:${PORT}/health`);
+  });
+}
+
+// Export for Vercel
+module.exports = app;
 
 // Graceful shutdown
 process.on('SIGINT', async () => {
