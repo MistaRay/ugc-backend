@@ -43,6 +43,8 @@ app.get('/', (req, res) => {
   res.json({ 
     status: 'OK', 
     message: 'UGC Backend is running!',
+    databaseConfigured: !!process.env.DATABASE_URL,
+    wechatConfigured: !!(process.env.WECHAT_APP_ID && process.env.WECHAT_APP_SECRET),
     endpoints: {
       health: '/health',
       wechatLogin: '/api/wechat/login',
